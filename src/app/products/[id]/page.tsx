@@ -8,6 +8,8 @@ interface ProductPageProps {
   params: Promise<{ id: string }>;
 }
 
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
   const products = await fetchProducts();
 

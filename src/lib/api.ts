@@ -18,9 +18,10 @@ export const fetchProducts = async (category?: string): Promise<Product[]> => {
   const response = await fetch(url, getFetchOptions());
 
   if (!response.ok) {
-    throw new Error(
+    console.error(
       `Unable to load products. The server responded with status ${response.status}. Please try again later.`
     );
+    return []
   }
 
   return await response.json();

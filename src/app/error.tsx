@@ -8,6 +8,11 @@ interface ErrorPageProps {
 }
 
 export default function ErrorPage({ error, reset }: ErrorPageProps) {
+  if (error.digest) {
+    console.error('Error digest:', error.digest);
+  }
+  console.error('Error message:', error.message);
+
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">

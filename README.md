@@ -4,7 +4,7 @@ Uma aplicação moderna de catálogo de produtos construída com Next.js 16, Rea
 
 ## 🚀 Como Rodar o Projeto
 
-- Acesse https://altaa-victor-praganas-projects.vercel.app/
+- Acesse https://altaa-two.vercel.app/
 
 ### Pré-requisitos
 

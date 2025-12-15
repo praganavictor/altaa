@@ -11,51 +11,65 @@ const getFetchOptions = (): RequestInit => {
 };
 
 export const fetchProducts = async (category?: string): Promise<Product[]> => {
-  const url = category
-    ? `${BASE_URL}/products/category/${category}`
-    : `${BASE_URL}/products`;
+  try {
+    const url = category
+      ? `${BASE_URL}/products/category/${category}`
+      : `${BASE_URL}/products`;
 
-  const response = await fetch(url, getFetchOptions());
+    const response = await fetch(url, getFetchOptions());
 
-  if (!response.ok) {
-    console.error(
-      `Unable to load products. The server responded with status ${response.status}. Please try again later.`
-    );
-    return []
+    if (!response.ok) {
+      console.error(
+        `Unable to load products. Status: ${response.status}`
+      );
+      return [];
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return [];
   }
-
-  return await response.json();
 };
 
 export const fetchProductById = async (id: string): Promise<Product | null> => {
-  const response = await fetch(
-    `${BASE_URL}/products/${id}`,
-    getFetchOptions()
-  );
+  try {
+    const response = await fetch(
+      `${BASE_URL}/products/${id}`,
+      getFetchOptions()
+    );
 
-  if (!response.ok) {
-    if (response.status === 404) {
+    if (!response.ok) {
+      console.error(
+        `Failed to fetch product ${id}. Status: ${response.status}`
+      );
       return null;
     }
-    throw new Error(
-      `Unable to load product details. The server responded with status ${response.status}. Please try again later.`
-    );
-  }
 
-  return await response.json();
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching product ${id}:`, error);
+    return null;
+  }
 };
 
 export const fetchCategories = async (): Promise<string[]> => {
-  const response = await fetch(
-    `${BASE_URL}/products/categories`,
-    getFetchOptions()
-  );
-
-  if (!response.ok) {
-    throw new Error(
-      `Unable to load categories. The server responded with status ${response.status}. Please try again later.`
+  try {
+    const response = await fetch(
+      `${BASE_URL}/products/categories`,
+      getFetchOptions()
     );
-  }
 
-  return await response.json();
+    if (!response.ok) {
+      console.error(
+        `Failed to fetch categories. Status: ${response.status}`
+      );
+      return [];
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
 };

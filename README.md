@@ -200,9 +200,7 @@ export async function generateStaticParams() {
 
 1. **Testes Automatizados**
 
-2. **Acessibilidade (a11y)**
-
-3. **Performance**
+2. **Performance**
 
 ## 📦 Tecnologias Utilizadas
 

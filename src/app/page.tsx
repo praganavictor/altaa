@@ -33,12 +33,18 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           </p>
         </header>
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
-          <CategoryFilter categories={categories} />
-          <SortControls currentSort={sort} />
-        </div>
+        <section>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            Browse Products
+          </h2>
 
-        <ProductGrid products={sortedProducts} />
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <CategoryFilter categories={categories} />
+            <SortControls currentSort={sort} />
+          </div>
+  
+          <ProductGrid products={sortedProducts} />
+        </section>
       </div>
     </div>
   );

@@ -16,16 +16,21 @@ export const fetchProducts = async (category?: string): Promise<Product[]> => {
       ? `${BASE_URL}/products/category/${category}`
       : `${BASE_URL}/products`;
 
+    console.log('Fetching products from URL:', url);
+
     const response = await fetch(url, getFetchOptions());
 
+    console.log('Fetch request sent. Awaiting response...', response);
+
     if (!response.ok) {
-      console.error(
-        `Unable to load products. Status: ${response.status}`
-      );
+      console.error(`Unable to load products. Status: ${response.status}`);
       return [];
     }
 
-    return await response.json();
+    const data = await response.json();
+    console.log('Products fetched successfully.', data);
+
+    return data;
   } catch (error) {
     console.error('Error fetching products:', error);
     return [];
@@ -61,9 +66,7 @@ export const fetchCategories = async (): Promise<string[]> => {
     );
 
     if (!response.ok) {
-      console.error(
-        `Failed to fetch categories. Status: ${response.status}`
-      );
+      console.error(`Failed to fetch categories. Status: ${response.status}`);
       return [];
     }
 
